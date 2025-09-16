@@ -20,7 +20,7 @@ def simulate_sensors(interval=2, **kwargs):
         writer.writerow(["time", "temperature", "voltage", "current", "vibration"])
 
     while True:
-        if stop_flag and stop_flag.is_set():  # ✅ allow external stop
+        if stop_flag and stop_flag.is_set():  # allow external stop
             break
         timestamp = time.strftime("%Y-%m-%d %H:%M:%S")
 
@@ -35,7 +35,7 @@ def simulate_sensors(interval=2, **kwargs):
         with open(DATA_FILE, "a", newline="") as f:
             csv.writer(f).writerow(row)
 
-        print(f"✅ Sensor reading at {timestamp}: {row[1:]}")
+        print(f"Sensor reading at {timestamp}: {row[1:]}")
 
         time.sleep(interval)
 

@@ -9,7 +9,7 @@ import pandas as pd, glob, os
 def collect_all(input_pattern="data/sensor*.csv", output_file="data/combined.csv"):
     files = glob.glob(input_pattern)
     if not files:
-        print("⚠️ No sensor files found.")
+        print("No sensor files found.")
         return
 
     combined = pd.concat([pd.read_csv(f) for f in files], ignore_index=True)

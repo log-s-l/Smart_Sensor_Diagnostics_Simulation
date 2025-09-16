@@ -50,11 +50,11 @@ def run_fault_detector(
                 if not df.empty:
                     df["fault_status"] = df.apply(check_row, axis=1)
                     df.to_csv(output_file, index=False)
-                    print(f"✅ Fault detection updated → {output_file} ({len(df)} rows)")
+                    print(f"Fault detection updated → {output_file} ({len(df)} rows)")
             except Exception as e:
-                print(f"⚠️ Error reading {input_file}: {e}")
+                print(f"Error reading {input_file}: {e}")
         else:
-            print(f"⚠️ Waiting for {input_file}...")
+            print(f"Waiting for {input_file}...")
 
         time.sleep(interval)
 
@@ -88,11 +88,11 @@ def detect_faults(
                 "faults_found": int((new_rows["fault_status"] != "OK").sum()),
                 "last_status": new_rows["fault_status"].iloc[-1]
             }
-            print(f"✅ Processed {len(new_rows)} new rows → {output_file}")
+            print(f"Processed {len(new_rows)} new rows → {output_file}")
             return last_index, summary
 
     except Exception as e:
-        print(f"⚠️ Error reading {input_file}: {e}")
+        print(f"Error reading {input_file}: {e}")
 
     return last_index, {"total_rows": 0, "faults_found": 0, "last_status": None}
 
